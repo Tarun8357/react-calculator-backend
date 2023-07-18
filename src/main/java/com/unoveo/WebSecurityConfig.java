@@ -1,6 +1,4 @@
 package com.unoveo;
-
-
 import com.unoveo.models.Role;
 import com.unoveo.models.User;
 import com.unoveo.security.jwt.AuthEntryPointJwt;
