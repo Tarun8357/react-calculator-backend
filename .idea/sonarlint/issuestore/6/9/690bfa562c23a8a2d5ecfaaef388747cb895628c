@@ -1,0 +1,7 @@
+
+k
+java:S1206d"PThis class overrides "equals()" and should therefore also override "hashCode()".(Ýข๊อýÿÿÿÿ
+S	java:S106("9Replace this use of System.out or System.err by a logger.(็ฉ๚ÿÿÿÿ
+h
+java:S6204+"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(ชจน
+S	java:S1068"9Replace this use of System.out or System.err by a logger.(ผ๊…๑๙ÿÿÿÿ
