@@ -41,23 +41,3 @@ f
 6src/main/java/com/unoveo/security/IndexController.java,0\8\0819145659bc78b4560eeada651e947830c59ab3
 p
 @src/main/java/com/unoveo/security/SecurityWebAppInitializer.java,c\8\c8a866d6a760efcbc1100d46be37669c4514c01e
-Q
-!src/test/java/CalculatorTest.java,a\1\a11f7b8b61abcbf7e8c0318696e43bc9a33e4a5c
-O
-src/test/java/TestSelenium.java,c\1\c16e4c7845a6fc3c3332f9567ccddf1dbb005798
-k
-;src/main/java/com/unoveo/calculatorUtils/CalculatorDTO.java,9\b\9b99e29ebf592914e4edab385066947ee1f18a83
-7
-pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
-c
-3src/main/java/com/unoveo/security/WebMvcConfig.java,d\4\d4f40d5726ef49465f6ea76ea10fe41172f4e968
-N
-src/test/java/ExcelReader.java,1\e\1eba8fc31e5f558e823a13a974bb00c5f61d2dd1
-m
-=src/main/java/com/unoveo/calculatorUtils/CalculatorModel.java,1\c\1cd74aef67c50545fd55a028a6246669c252bbdd
-_
-/src/main/java/com/unoveo/WebSecurityConfig.java,3\1\318553438dee64c10cb5cf31a230161ac267771e
-L
-src/test/java/GridTest1.java,5\4\54c27197ad5d217f8ce929cbb9b99df97b602884
-R
-"src/test/java/NewTestSelenium.java,9\9\9981bf9cdc794ff61616a6e24ebf061694b34b2d
