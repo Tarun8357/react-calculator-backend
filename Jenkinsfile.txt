@@ -1,0 +1,26 @@
+pipeline {
+    agent any
+    
+    stages {
+        stage('Checkout') {
+            steps {
+                // Checkout the source code from your Git repository
+                checkout scm
+            }
+        }
+        
+        stage('Build') {
+            steps {
+                // Install Node.js using a tool like nvm (if not already installed)
+                // sh 'nvm install <node_version>'
+                
+                // Install project dependencies using npm
+                sh 'npm install'
+                
+                // Build the project using npm
+                sh 'npm run build'
+            }
+        }
+        
+        // Add more stages for testing, deployment, etc.
+    }
