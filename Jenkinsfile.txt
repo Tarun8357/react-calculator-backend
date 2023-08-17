@@ -1,0 +1,51 @@
+pipeline {
+    agent any
+    
+    stages {
+        stage('Checkout') {
+            steps {
+                // Checkout the source code from your Git repository
+                checkout scm
+            }
+        }
+        
+        stage('Build') {
+            steps {
+                // Compile and package the application using Maven
+                sh 'mvn clean package'
+            }
+        }
+        
+        stage('Test') {
+            steps {
+                // Run tests using Maven
+                sh 'mvn test'
+            }
+        }
+        
+        stage('Deploy') {
+            steps {
+                // Here, you can add deployment steps if needed
+                // For example, deploying to a server or a container
+                // sh 'your deployment command'
+            }
+        }
+    }
+    
+    post {
+        always {
+            // Archive the generated artifacts
+            archiveArtifacts artifacts: '**/target/*.jar', allowEmptyArchive: true
+        }
+        
+        success {
+            // Send a notification if the pipeline succeeds
+            echo 'Pipeline succeeded!'
+        }
+        
+        failure {
+            // Send a notification if the pipeline fails
+            echo 'Pipeline failed!'
+        }
+    }
+}
