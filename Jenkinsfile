@@ -1,21 +1,25 @@
 pipeline {
     agent any
 
+    tools {
+        // Install the Maven version configured as "M3" and add it to the path.
+        maven "M2"
+    }
+
     stages {
         stage('Build') {
             steps {
-                // Provide Git credentials
-                withCredentials([usernamePassword(credentialsId: 'git-credentials', usernameVariable: 'Tarun8357', passwordVariable: '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')]) {
-                    git branch: 'main', credentialsId: 'git-credentials', url: 'https://github.com/Tarun8357/react-calculator-backend.git'
-                }
-                
-                // Run Maven on a Windows agent
-                bat "mvn -v"
+                // Get some code from a GitHub repository
+                git 'https://github.com/Tarun8357/react-calculator-backend.git'
+
+                // To run Maven on a Windows agent, use
+                 bat "mvn -Dmaven.test.failure.ignore=true clean package"
             }
 
             post {
+                // If Maven was able to run the tests, even if some of the test
+                // failed, record the test results and archive the jar file.
                 success {
-                    // Send email notification on build success
                     emailext body: 'Build Successful', subject: 'Information Of Build', to: 'tarun.dhakad@unoveo.com'
                 }
             }
