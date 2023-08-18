@@ -9,8 +9,9 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                // Get some code from a GitHub repository
-                git 'https://github.com/Tarun8357/react-calculator-backend.git'
+               withCredentials([usernamePassword(credentialsId: 'accessId-1', usernameVariable: 'Tarun8357', passwordVariable: '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')]) {
+                    git branch: 'main', credentialsId: 'accessId-1', url: 'https://github.com/Tarun8357/react-calculator-backend.git'
+                }
 
                 // To run Maven on a Windows agent, use
                  bat "mvn -Dmaven.test.failure.ignore=true clean package"
