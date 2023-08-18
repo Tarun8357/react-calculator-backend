@@ -1,24 +1,29 @@
 pipeline {
     agent any
 
-    stages {
-        stage('Checkout') {
-            steps {
-                // Checking out the source code from a version control system (e.g., Git)
-               // checkout scm
-                echo "Checkout"
-            }
-        }
+    tools {
+        // Install the Maven version configured as "M3" and add it to the path.
+        maven "M2_HOME"
+    }
 
+    stages {
         stage('Build') {
             steps {
-                    echo "Build"
-                // Replace this with your actual build commands
-             //   sh 'echo "Building the project..."'
-              //  sh './maven build' // Example build command for a Gradle project
+                // Get some code from a GitHub repository
+                git 'https://github.com/Tarun8357/react-calculator-backend.git'
+
+                // To run Maven on a Windows agent, use
+                 bat "mvn -Dmaven.test.failure.ignore=true clean package"
+            }
+
+            post {
+                // If Maven was able to run the tests, even if some of the test
+                // failed, record the test results and archive the jar file.
+                success {
+                    emailext body: 'Build Successful', subject: 'Information Of Build', to: 'tarun.dhakad@unoveo.com'
+                }
             }
         }
-
-        // Add more stages for additional steps like testing, deployment, etc.
     }
 }
+
