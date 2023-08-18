@@ -8,7 +8,7 @@ pipeline {
                 git 'https://github.com/Tarun8357/react-calculator-backend.git'
 
                 // To run Maven on a Windows agent, use
-                 bat "mvn -Dmaven.test.failure.ignore=true clean package"
+                 bat "mvn -v"
             }
 
             post {
