@@ -6,7 +6,7 @@ pipeline {
             steps {
                 // Provide Git credentials
                 withCredentials([usernamePassword(credentialsId: 'git-credentials', usernameVariable: 'Tarun8357', passwordVariable: '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')]) {
-                    git branch: 'master', credentialsId: 'accessId-1', url: 'https://github.com/Tarun8357/react-calculator-backend.git'
+                    git branch: 'main', credentialsId: 'accessId-1', url: 'https://github.com/Tarun8357/react-calculator-backend.git'
                 }
                 
                 // Run Maven on a Windows agent
