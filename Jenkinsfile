@@ -4,21 +4,21 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                // Get some code from a GitHub repository
-                git 'https://github.com/Tarun8357/react-calculator-backend.git'
-
-                // To run Maven on a Windows agent, use
-                 bat "mvn -v"
+                // Provide Git credentials
+                withCredentials([usernamePassword(credentialsId: 'git-credentials', usernameVariable: 'Tarun8357', passwordVariable: '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')]) {
+                    git branch: 'master', credentialsId: 'accessId-1', url: 'https://github.com/Tarun8357/react-calculator-backend.git'
+                }
+                
+                // Run Maven on a Windows agent
+                bat "mvn -v"
             }
 
             post {
-                // If Maven was able to run the tests, even if some of the test
-                // failed, record the test results and archive the jar file.
                 success {
+                    // Send email notification on build success
                     emailext body: 'Build Successful', subject: 'Information Of Build', to: 'tarun.dhakad@unoveo.com'
                 }
             }
         }
     }
 }
-
