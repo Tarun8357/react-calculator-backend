@@ -13,7 +13,7 @@ public class TestSelenium {
     public void testSelenium() {
         //Setting properties for chrome web driver for testing
         System.setProperty("webDriver.chrome.driver", "C:\\Users\\Tarun\\Downloads\\chromedriver_win32\\chromedriver.exe");
-
+        System.setProperty();
         //initializing the web driver class
         WebDriver driver  = new ChromeDriver();
 
