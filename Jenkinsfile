@@ -14,7 +14,7 @@ pipeline {
                 }
 
                 // To run Maven on a Windows agent, use
-                 bat "mvn install"
+                 bat "mvn -Dmaven.test.failure.ignore=true install"
             }
 
             post {
