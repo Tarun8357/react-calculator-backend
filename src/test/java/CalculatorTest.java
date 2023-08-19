@@ -1,12 +1,15 @@
 import com.unoveo.calculatorUtils.CalculatorModel;
-import org.junit.jupiter.api.Test;
+
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.testng.annotations.Test;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.testng.Assert.assertEquals;
+
 
 public class CalculatorTest {
     private final String TEST_CASES_FILE = "src/test/java/Calculator-Test.xlsx";

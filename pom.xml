@@ -10,40 +10,13 @@
   <url>http://maven.apache.org</url>
 
     <dependencies>
-<!--      <dependency>-->
-<!--        <groupId>junit</groupId>-->
-<!--        <artifactId>junit</artifactId>-->
-<!--        <version>3.8.1</version>-->
-<!--        <scope>test</scope>-->
-<!--      </dependency>-->
 
-      <dependency>
-        <groupId>org.skyscreamer</groupId>
-        <artifactId>jsonassert</artifactId>
-        <version>1.5.0</version>
-      </dependency>
-
-<!--      &lt;!&ndash; https://mvnrepository.com/artifact/junit/junit &ndash;&gt;-->
-<!--      <dependency>-->
-<!--        <groupId>junit</groupId>-->
-<!--        <artifactId>junit</artifactId>-->
-<!--        <version>4.13.2</version>-->
-<!--        <scope>test</scope>-->
-<!--      </dependency>-->
-      <!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
       <dependency>
         <groupId>org.apache.poi</groupId>
         <artifactId>poi</artifactId>
         <version>5.2.3</version>
       </dependency>
 
-<!--      &lt;!&ndash; https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-params &ndash;&gt;-->
-<!--      <dependency>-->
-<!--        <groupId>org.junit.jupiter</groupId>-->
-<!--        <artifactId>junit-jupiter-params</artifactId>-->
-<!--        <version>5.9.3</version>-->
-<!--        <scope>test</scope>-->
-<!--      </dependency>-->
 
       <!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
       <dependency>
@@ -214,12 +187,7 @@
         <version>7.8.0</version>
         <scope>test</scope>
       </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <version>RELEASE</version>
-            <scope>test</scope>
-        </dependency>
+
 
 
     </dependencies>
