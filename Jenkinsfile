@@ -33,7 +33,7 @@ pipeline {
 				withCredentials([usernamePassword(credentialsId: 'tomcat-credentials', usernameVariable: 'war-deployer', passwordVariable: 'jenkins')]) {
 					script {
 						def warFile = findFiles(glob: '**/*.war').first()
-
+						bat "startup"
 						bat """
 						curl -v -u war-deployer:jenkins ^
 						-T "${warFile}" ^
