@@ -37,7 +37,7 @@ stage('Deploy to Tomcat') {
                 bat """
                 curl -v -u %TOMCAT_USERNAME%:%TOMCAT_PASSWORD% ^
                 -T "${warFile}" ^
-                http://your-tomcat-server:8080/manager/text/deploy?path=/myapp
+                http://localhost:8080/manager/text/deploy?path=/myapp
                 """
             }
         }
