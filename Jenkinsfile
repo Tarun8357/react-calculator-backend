@@ -33,6 +33,7 @@ pipeline {
 					withCredentials([usernamePassword(credentialsId: 'tomcat-credentials', usernameVariable: 'war-deployer', passwordVariable: 'jenkins')]) {
 					script {
 						def warFile = findFiles(glob: '**/*.war').first()
+						 def warDeployer = "war-deployer" // Replace with your actual username
 						bat "catalina.bat start" // Adjust the startup command accordingly
 						waitUntil {
 							try {
