@@ -30,28 +30,21 @@ pipeline {
 
 		stage('Deploy to Tomcat') {
 			steps {
-					withCredentials([usernamePassword(credentialsId: 'tomcat-credentials', usernameVariable: 'war-deployer', passwordVariable: 'jenkins')]) {
+				withCredentials([usernamePassword(credentialsId: 'tomcat-credentials', usernameVariable: 'war-deployer', passwordVariable: 'jenkins')]) {
 					script {
 						def warFile = findFiles(glob: '**/*.war').first()
-						bat "catalina.bat start" // Adjust the startup command accordingly
-						waitUntil {
-							try {
-								bat(script: 'curl http://localhost:8181', returnStatus: true)
-								return true
-							} catch (Exception e) {
-								return false
-								}
-						}
-							bat """
-							curl -v -u ${war-deployer}:${jenkins} ^
-							-T "${warFile}" ^
-							http://localhost:8181/manager/text/deploy?path=/CLEANSPRINGSECURITY
-							"""
+						bat "startup"
+						bat """
+						curl -v -u war-deployer:jenkins ^
+						-T "${warFile}" ^
+						http://localhost:8181/manager/text/deploy?path=/CLEANSPRINGSECURITY
+
+						
+						"""
 					}
 				}
 			}
 		}
-
 
     }
 }
