@@ -26,5 +26,13 @@ pipeline {
                 }
             }
         }
+
+	 stage ('Deploy') {
+     	     steps {
+                 script {
+                     deploy adapters: [tomcat9( path: '', url: http://localhost:8080/CLEANSPRINGSECURITY')], contextPath: '/pipeline',onFailure: false, war: 'webapp/target/*.war' 
+                 }
+             }
+         }
     }
 }
