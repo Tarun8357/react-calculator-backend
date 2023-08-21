@@ -1,0 +1,111 @@
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+public class DatabaseIntegrationTest {
+
+    private Connection connection;
+
+    @BeforeClass
+    public void setUp() {
+        // Set up the database connection (replace with your actual database details)
+        String dbUrl = "jdbc:mysql://localhost:3306/testdb";
+        String dbUser = "username";
+        String dbPassword = "password";
+
+        try {
+            connection = DriverManager.getConnection(dbUrl, dbUser, dbPassword);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testCreateUser() {
+        try {
+            // Perform the create operation (insert a user into the database)
+            String insertQuery = "INSERT INTO users (id, username, email) VALUES (?, ?, ?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(insertQuery);
+            preparedStatement.setInt(1, 1); // Assuming ID 1 is not already in use
+            preparedStatement.setString(2, "testuser");
+            preparedStatement.setString(3, "testuser@example.com");
+
+            int rowsAffected = preparedStatement.executeUpdate();
+            preparedStatement.close();
+
+            // Assertion: Check if the insert operation was successful
+            assert rowsAffected == 1 : "Failed to create user";
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test(dependsOnMethods = "testCreateUser")
+    public void testReadUser() {
+        try {
+            // Perform the read operation (retrieve user data from the database)
+            String selectQuery = "SELECT * FROM users WHERE id = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(selectQuery);
+            preparedStatement.setInt(1, 1); // Assuming we inserted a user with ID 1
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            // Assertion: Check if the user was retrieved and data is correct
+            assert resultSet.next() : "Failed to read user";
+            assert resultSet.getString("username").equals("testuser") : "Incorrect username";
+            assert resultSet.getString("email").equals("testuser@example.com") : "Incorrect email";
+
+            resultSet.close();
+            preparedStatement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Similar methods for testing Update and Delete operations can be added here
+
+    @AfterClass
+    public void tearDown() {
+        // Close the database connection
+        try {
+            if (connection != null) {
+                connection.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+
+script for new tomcat configuration
+
+
+stage('Deploy to Tomcat') {
+    steps {
+        withCredentials([usernamePassword(credentialsId: 'tomcat-credentials', usernameVariable: 'war-deployer', passwordVariable: 'jenkins')]) {
+            script {
+                def warFile = findFiles(glob: '**/*.war').first()
+                bat "catalina.bat start" // Adjust the startup command accordingly
+                waitUntil {
+                    try {
+                        sh(script: 'curl http://localhost:8181', returnStatus: true)
+                        return true
+                    } catch (Exception e) {
+                        return false
+                    }
+                }
+                bat """
+                curl -v -u ${war-deployer}:${jenkins} ^
+                -T "${warFile}" ^
+                http://localhost:8181/manager/text/deploy?path=/CLEANSPRINGSECURITY
+                """
+            }
+        }
+    }
+}

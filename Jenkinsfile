@@ -35,11 +35,11 @@ pipeline {
 						def warFile = findFiles(glob: '**/*.war').first()
 						bat "startup"
 						bat """
-						curl -v -u war-deployer:jenkins ^
-						-T "${warFile}" ^
-						http://localhost:8181/manager/text/deploy?path=/CLEANSPRINGSECURITY
+						// curl -v -u war-deployer:jenkins ^
+						// -T "${warFile}" ^
+						// http://localhost:8181/manager/text/deploy?path=/CLEANSPRINGSECURITY
 
-						
+						curl -v -u deployer:password -X GET http://localhost:8181/manager/text/undeploy?path=/CLEANSPRINGSECURITY
 						"""
 					}
 				}
