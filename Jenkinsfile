@@ -35,7 +35,7 @@ stage('Deploy to Tomcat') {
                 def warFile = findFiles(glob: 'C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\react-calc-backend-pipeline\\target\\CLEANSPRINGSECURITY.war').first()
 
                 bat """
-                curl -v -u %TOMCAT_USERNAME%:%TOMCAT_PASSWORD% ^
+                curl -v -u war-deployer:jenkins ^
                 -T "${warFile}" ^
                 http://localhost:8080/CLEANSPRINGSECURITY?path=/CLEANSPRINGSECURITY
                 """
