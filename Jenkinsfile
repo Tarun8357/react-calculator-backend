@@ -37,7 +37,7 @@ pipeline {
 						bat """
 						curl -v -u war-deployer:jenkins ^
 						-T "${warFile}" ^
-						http://localhost:8080/CLEANSPRINGSECURITY
+						http://localhost:8088/CLEANSPRINGSECURITY
 						"""
 					}
 				}
