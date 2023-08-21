@@ -28,21 +28,21 @@ pipeline {
         }
 
 
-stage('Deploy to Tomcat') {
-    steps {
-        withCredentials([usernamePassword(credentialsId: 'tomcat-credentials', usernameVariable: 'war-deployer', passwordVariable: 'jenkins')]) {
-            script {
-                def warFile = findFiles(glob: 'C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\react-calc-backend-pipeline\\target\\CLEANSPRINGSECURITY.war').first()
+	stage('Deploy to Tomcat') {
+		steps {
+			withCredentials([usernamePassword(credentialsId: 'tomcat-credentials', usernameVariable: 'war-deployer', passwordVariable: 'jenkins')]) {
+				script {
+					def warFile = findFiles(glob: 'C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\react-calc-backend-pipeline\\target\\CLEANSPRINGSECURITY.war').first()
 
-                bat """
-                curl -v -u war-deployer:jenkins ^
-                -T "${warFile}" ^
-                http://localhost:8080/CLEANSPRINGSECURITY
-                """
-            }
-        }
-    }
-}
+					bat """
+					curl -v -u war-deployer:jenkins ^
+					-T "${warFile}" ^
+					http://localhost:8080/CLEANSPRINGSECURITY
+					"""
+				}
+			}
+		}
+	}
 
     }
 }
