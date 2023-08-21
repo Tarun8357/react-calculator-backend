@@ -31,31 +31,21 @@ pipeline {
 		stage('Deploy to Tomcat') {
 			steps {
 				withCredentials([usernamePassword(credentialsId: 'tomcat-credentials', usernameVariable: 'war-deployer', passwordVariable: 'jenkins')]) {
-				script {
-					def warFile = findFiles(glob: '**/*.war').first()
-					bat "catalina.bat start" // Start Tomcat
-
-					// Wait for Tomcat to fully start (adjust the timeout as needed)
-					waitUntil {
-						try {
-                        bat(script: 'curl http://localhost:8181/manager/text/deploy?path=/CLEANSPRINGSECURITY', returnStatus: true)
-                        return true
-						} catch (Exception e) {
-                        return false
-						}
-						}
-
-						// Deploy the application
+					script {
+						def warFile = findFiles(glob: '**/*.war').first()
+						bat "catalina.bat start"
 						bat """
-						curl -v -u ${war-deployer}:${jenkins} ^
+						curl -v -u war-deployer:jenkins ^
 						-T "${warFile}" ^
-						-X POST http://localhost:8181/manager/text/deploy?path=/CLEANSPRINGSECURITY
+						 -X GET http://localhost:8181/manager/text/deploy?path=/CLEANSPRINGSECURITY
+
+						
 						"""
+						
 					}
 				}
 			}
 		}
-
 
     }
 }
