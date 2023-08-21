@@ -27,12 +27,5 @@ pipeline {
             }
         }
 
-	 stage ('Deploy') {
-     	     steps {
-                 script {
-                     deploy adapters: [tomcat9(credentialsId: 'tomcat_credential', path: '', url: 'http://localhost:8080/CLEANSPRINGSECURITY')], contextPath: '/pipeline', onFailure: false, war: 'webapp/target/*.war' 
-                 }
-             }
-    }
     }
 }
