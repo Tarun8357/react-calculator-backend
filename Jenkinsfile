@@ -41,7 +41,7 @@ pipeline {
 
 						
 						"""
-						bat "curl -v -u deployer:password -X GET http://localhost:8181/manager/text/undeploy?path=/CLEANSPRINGSECURITY "
+						
 					}
 				}
 			}
