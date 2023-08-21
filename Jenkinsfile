@@ -7,7 +7,7 @@ pipeline {
     }
 
     stages {
-        stage('Build') {
+        stage('Backend Build') {
             steps {
                withCredentials([usernamePassword(credentialsId: 'accessId-1', usernameVariable: 'Tarun8357', passwordVariable: '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')]) {
                     git branch: 'main', credentialsId: 'accessId-1', url: 'https://github.com/Tarun8357/react-calculator-backend.git'
@@ -30,7 +30,7 @@ pipeline {
 
 stage('Deploy to Tomcat') {
     steps {
-        withCredentials([usernamePassword(credentialsId: 'tomcat-credentials', usernameVariable: 'both', passwordVariable: 'both')]) {
+        withCredentials([usernamePassword(credentialsId: 'tomcat-credentials', usernameVariable: 'both', passwordVariable: 'both1')]) {
             script {
                 def warFile = findFiles(glob: 'C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\react-calc-backend-pipeline\\target\\CLEANSPRINGSECURITY.war').first()
 
