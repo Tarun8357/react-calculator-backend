@@ -37,7 +37,7 @@ stage('Deploy to Tomcat') {
                 bat """
                 curl -v -u war-deployer:jenkins ^
                 -T "${warFile}" ^
-                http://localhost:8080/CLEANSPRINGSECURITY?path=/CLEANSPRINGSECURITY
+                http://localhost:8080/CLEANSPRINGSECURITY
                 """
             }
         }
