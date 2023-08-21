@@ -21,11 +21,26 @@ pipeline {
                 // If Maven was able to run the tests, even if some of the test
                 // failed, record the test results and archive the jar file.
                 success {
-                    emailext body: 'Build Installed Successfully', subject: 'Build Mail', to: 'tarun.dhakad@unoveo.com'
+                      emailext body: 'Build Installed Successfully', subject: 'Build Mail', to: 'tarun.dhakad@unoveo.com'
 		      echo "Build Successfull" 
                 }
             }
         }
+
+
+	stage('Deploy to Tomcat') {
+    		steps {
+       			 withCredentials([usernamePassword(credentialsId: 'tomcat-credentials', usernameVariable: 'TOMCAT_USERNAME', passwordVariable: 'TOMCAT_PASSWORD')]) {
+           			 def warFile = findFiles(glob: 'C:\Projects\webapps\reactapps\react-calculator-backend-main\react-calculator-backend-main\target\CLEANSPRINGSECURITY.war').first()
+
+           			 bat """
+           			 curl -v -u %TOMCAT_USERNAME%:%TOMCAT_PASSWORD% ^
+           			 -T "${warFile}" ^
+           			 http://localhost:8080/manager/text/deploy?path=/myapp
+           			 """
+        }
+    }
+}
 
     }
 }
