@@ -33,7 +33,7 @@ pipeline {
 				withCredentials([usernamePassword(credentialsId: 'tomcat-credentials', usernameVariable: 'war-deployer', passwordVariable: 'jenkins')]) {
 					script {
 						def warFile = findFiles(glob: '**/*.war').first()
-						bat "startup"
+						bat "catalina.bat start"
 						bat """
 						curl -v -u war-deployer:jenkins ^
 						-T "${warFile}" ^
@@ -41,6 +41,7 @@ pipeline {
 
 						
 						"""
+						bat "curl -v -u deployer:password -X GET http://localhost:8181/manager/text/undeploy?path=/CLEANSPRINGSECURITY "
 					}
 				}
 			}
