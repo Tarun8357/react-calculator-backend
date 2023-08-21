@@ -41,6 +41,7 @@ pipeline {
 
 						
 						"""
+						bat "shutdown"
 					}
 				}
 			}
