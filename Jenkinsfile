@@ -37,24 +37,24 @@ pipeline {
 
 					// Wait for Tomcat to fully start (adjust the timeout as needed)
 					waitUntil {
-                    try {
+						try {
                         bat(script: 'curl http://localhost:8181/manager/text/deploy?path=/CLEANSPRINGSECURITY', returnStatus: true)
                         return true
-                    } catch (Exception e) {
+						} catch (Exception e) {
                         return false
-                    }
-                }
+						}
+						}
 
-                // Deploy the application
-                bat """
-                curl -v -u ${war-deployer}:${jenkins} ^
-                -T "${warFile}" ^
-                -X POST http://localhost:8181/manager/text/deploy?path=/CLEANSPRINGSECURITY
-                """
-            }
-        }
-    }
-}
+						// Deploy the application
+						bat """
+						curl -v -u ${war-deployer}:${jenkins} ^
+						-T "${warFile}" ^
+						-X POST http://localhost:8181/manager/text/deploy?path=/CLEANSPRINGSECURITY
+						"""
+					}
+				}
+			}
+		}
 
 
     }
