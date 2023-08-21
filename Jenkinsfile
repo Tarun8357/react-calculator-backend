@@ -36,7 +36,7 @@ pipeline {
 						bat "catalina.bat start" // Adjust the startup command accordingly
 						waitUntil {
 							try {
-								sh(script: 'curl http://localhost:8181', returnStatus: true)
+								bat(script: 'curl http://localhost:8181', returnStatus: true)
 								return true
 							} catch (Exception e) {
 								return false
