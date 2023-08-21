@@ -32,7 +32,7 @@ pipeline {
 			steps {
 				withCredentials([usernamePassword(credentialsId: 'tomcat-credentials', usernameVariable: 'war-deployer', passwordVariable: 'jenkins')]) {
 					script {
-						def warFile = findFiles(glob: 'C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\react-calc-backend-pipeline\\target\\CLEANSPRINGSECURITY.war').first()
+						def warFile = findFiles(glob: '**/*.war').first()
 
 						bat """
 						curl -v -u war-deployer:jenkins ^
