@@ -30,7 +30,7 @@ pipeline {
 
 stage('Deploy to Tomcat') {
     steps {
-        withCredentials([usernamePassword(credentialsId: 'tomcat-credentials', usernameVariable: 'both', passwordVariable: 'both1')]) {
+        withCredentials([usernamePassword(credentialsId: 'tomcat-credentials', usernameVariable: 'war-deployer', passwordVariable: 'jenkins')]) {
             script {
                 def warFile = findFiles(glob: 'C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\react-calc-backend-pipeline\\target\\CLEANSPRINGSECURITY.war').first()
 
