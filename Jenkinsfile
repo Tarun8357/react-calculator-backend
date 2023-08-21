@@ -38,7 +38,7 @@ pipeline {
 					// Wait for Tomcat to fully start (adjust the timeout as needed)
 					waitUntil {
                     try {
-                        bat(script: 'curl http://localhost:8181', returnStatus: true)
+                        bat(script: 'curl http://localhost:8181/manager/text/deploy?path=/CLEANSPRINGSECURITY', returnStatus: true)
                         return true
                     } catch (Exception e) {
                         return false
