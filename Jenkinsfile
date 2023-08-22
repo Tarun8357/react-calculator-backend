@@ -37,6 +37,9 @@ pipeline {
 
                 // To install the node 
                  bat "npm install"
+				 
+				// To run the application 
+				 bat "npm build"
             }
 			
 
