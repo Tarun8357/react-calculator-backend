@@ -38,6 +38,8 @@ pipeline {
                 // To install the node 
                  bat "npm install"
 				 
+				 bat "npm audit fix --force"
+				 
 				// To run the application 
 				 bat "npm run build"
             }
