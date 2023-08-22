@@ -39,7 +39,7 @@ pipeline {
                  bat "npm install"
 				 
 				// To run the application 
-				 bat "npm build"
+				 bat "npm run build"
             }
 			
 
